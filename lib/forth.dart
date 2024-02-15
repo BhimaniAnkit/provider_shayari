@@ -22,7 +22,7 @@ class forth extends StatefulWidget {
 
 class _forthState extends State<forth> {
   WidgetsToImageController controller = WidgetsToImageController();
-  double size = 20.0; // Add this line
+  // double size = 20.0; // Add this line
   // String emoji = "🤨🤨🤨🤨";
 
   @override
@@ -60,7 +60,12 @@ class _forthState extends State<forth> {
                         decoration: BoxDecoration(
                           color: (provider.t == false) ? provider.c : null,
                           gradient: (provider.t == true)
-                            ? LinearGradient(colors: [Data.grediantcolor[provider.colIndex],Data.grediantcolor[provider.colIndex + 1]])
+                            ? LinearGradient(
+                                colors: [
+                                  Data.grediantcolor[provider.colIndex],
+                                  Data.grediantcolor[provider.colIndex + 1],
+                                  Data.grediantcolor[provider.colIndex + 2],
+                                ])
                               : null,
                         ),
                       ),
@@ -84,6 +89,7 @@ class _forthState extends State<forth> {
                                   provider.t = true;
                                   int s_random = Random().nextInt(Data.grediantcolor.length - 1);
                                   provider.colIndex = s_random;
+                                  setState(() {});
                                 },
                                 child: Container(
                                   margin: EdgeInsets.only(left: 120.0,top: 5.0,bottom: 5.0),
@@ -116,6 +122,7 @@ class _forthState extends State<forth> {
                                               onTap: () {
                                                 provider.t = true;
                                                 provider.colIndex = index;
+                                                setState(() {});
                                                 Navigator.pop(context);
                                               },
                                               child: Container(
@@ -124,7 +131,8 @@ class _forthState extends State<forth> {
                                                 decoration: BoxDecoration(
                                                   gradient: LinearGradient(colors: [
                                                     Data.grediantcolor[index],
-                                                    Data.grediantcolor[index + 1]
+                                                    Data.grediantcolor[index + 1],
+                                                    Data.grediantcolor[index + 2],
                                                   ]),
                                                 ),
                                               ),
@@ -233,7 +241,6 @@ class _forthState extends State<forth> {
                                                       height: 10,
                                                       width: 10,
                                                       color: Data.grediantcolor[index],
-
                                                     ),
                                                   );
                                                 },),),
@@ -365,6 +372,7 @@ class _forthState extends State<forth> {
                                                       // data.emoji[index] = emoji_1.length;
                                                       provider.emoji = Data.Emoji[index];
                                                       Navigator.pop(context);
+                                                      setState(() {});
                                                     },
                                                     child: ListTile(
                                                       tileColor: Colors.grey,
